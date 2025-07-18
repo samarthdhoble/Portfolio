@@ -6,19 +6,19 @@ const ContactInfo = () => {
     {
       icon: Mail,
       title: 'Email',
-      info: 'hello@yourname.com',
+      info: 'samarthdhoble2005@gmail.com',
       bgColor: 'bg-blue-600'
     },
     {
       icon: Phone,
       title: 'Phone',
-      info: '+1 (555) 123-4567',
+      info: '+91 9284471294',
       bgColor: 'bg-green-600'
     },
     {
       icon: MapPin,
       title: 'Location',
-      info: 'San Francisco, CA',
+      info: 'Pune , India',
       bgColor: 'bg-purple-600'
     }
   ];

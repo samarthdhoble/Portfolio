@@ -11,7 +11,7 @@ const About = () => {
   const technologies = ['React', 'JavaScript', 'Node.js', 'MongoDB', 'Tailwind CSS', 'Java'];
 
   return (
-    <section id="about" className="py-20 bg-white">
+    <section data-aos="fade-up" id="about" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">About Me</h2>

@@ -7,6 +7,7 @@ const ContactForm = () => {
     email: '',
     message: ''
   });
+  const [status, setStatus] = useState('idle'); // 'idle' | 'sending' | 'sent' | 'error'
 
   const handleChange = (e) => {
     setFormData({
@@ -15,72 +16,77 @@ const ContactForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // Reset form
-    setFormData({ name: '', email: '', message: '' });
+    setStatus('sending');
+
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/samarthdhoble7@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (res.ok) {
+        setStatus('sent');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch (err) {
+      setStatus('error');
+    }
   };
 
   return (
-    <div className="bg-white p-8 rounded-xl shadow-sm">
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-            Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Your name"
-          />
-        </div>
+    <div className="bg-[#111827] rounded-2xl p-8 w-full max-w-xl shadow-lg border border-[#1f2937]">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+        <h2 className="text-2xl font-bold text-white mb-4">Contact Me</h2>
 
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="your@email.com"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-            Message
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-            rows={4}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Tell me about your project..."
-          ></textarea>
-        </div>
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          required
+          value={formData.name}
+          onChange={handleChange}
+          className="bg-[#1f2937] text-white p-3 rounded-md border border-[#374151] focus:outline-none focus:ring-2 focus:ring-[#0ea5e9]"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          required
+          value={formData.email}
+          onChange={handleChange}
+          className="bg-[#1f2937] text-white p-3 rounded-md border border-[#374151] focus:outline-none focus:ring-2 focus:ring-[#0ea5e9]"
+        />
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          required
+          value={formData.message}
+          onChange={handleChange}
+          className="bg-[#1f2937] text-white p-3 rounded-md border border-[#374151] h-32 resize-none focus:outline-none focus:ring-2 focus:ring-[#0ea5e9]"
+        ></textarea>
 
         <button
           type="submit"
-          className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-colors flex items-center justify-center space-x-2"
+          disabled={status === 'sending'}
+          className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#0ea5e9] to-[#10b981] text-black font-semibold py-3 px-6 rounded-md hover:scale-105 transition-all duration-300"
         >
-          <Send size={20} />
-          <span>Send Message</span>
+          {status === 'sending' ? 'Sending...' : 'Send'} <Send size={16} />
         </button>
+
+        {status === 'sent' && (
+          <p className="text-green-400 font-medium mt-2">Message sent successfully!</p>
+        )}
+        {status === 'error' && (
+          <p className="text-red-400 font-medium mt-2">Something went wrong. Please try again.</p>
+        )}
       </form>
     </div>
   );

@@ -6,12 +6,12 @@ const Skills = () => {
   const skills = [
     { name: "Frontend Development", icon: Monitor, level: 95 },
     { name: "UI/UX Design", icon: Palette, level: 59 },
-    { name: "Backend Development", icon: Code, level: 80 },
+    { name: "Backend Development", icon: Code, level: 89 },
     { name: "Mobile Friendly Design", icon: Smartphone, level: 88 },
   ];
 
   return (
-    <section id="skills" className="py-20 bg-gray-50">
+    <section id="skills" className="py-20 bg-gray-50" data-aos="fade-left">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Skills & Services</h2>

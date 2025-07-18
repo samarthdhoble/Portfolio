@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -11,6 +14,11 @@ function App() {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
+    AOS.init({
+      duration: 800, // animation duration in ms
+      once: true,    // only animate once
+    });
+
     const handleScroll = () => {
       const sections = ['home', 'about', 'skills', 'projects', 'contact'];
       const scrollPosition = window.scrollY + 100;
