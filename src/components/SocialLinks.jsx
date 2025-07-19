@@ -5,7 +5,7 @@ const SocialLinks = () => {
   const socialLinks = [
     { icon: Github, link: 'https://github.com/samarthdhoble', label: 'GitHub' },
     { icon: Linkedin, link: 'https://linkedin.com/in/samarthdhoble', label: 'LinkedIn' },
-    { icon: Code, link: 'https://twitter.com/samarthdhoble', label: 'Twitter' },
+    { icon: Code, link: 'https://leetcode.com/u/samarthdhoble/', label: 'Twitter' },
   ];
 
   return (
