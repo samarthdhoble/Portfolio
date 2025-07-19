@@ -11,7 +11,7 @@ const About = () => {
   const technologies = [ 'Python','React', 'JavaScript', 'Node.js', 'Express.js' , 'MongoDB', 'MySQL' , 'Tailwind CSS', 'Java' ,'C++', 'Git' , 'GitHub' , 'RestAPIs', 'EJS', 'Vite'];
 
   return (
-    <section data-aos="fade-up" id="about" className="py-20 bg-gray-100 text-gray-900">
+    <section data-aos="fade-up" id="about" className="py-20 bg-transparent text-gray-900">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 tracking-tight">Who Am I?</h2>
